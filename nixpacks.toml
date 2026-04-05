@@ -1,9 +1,8 @@
-[phases.build]
-cmds = [
-  "npm install",
-  "npx prisma generate",
-  "npx prisma db push"
-]
+[phases.install]
+cmds = ["npm install --include=dev"]
 
-[phases.start]
-cmd = "npm start"
+[phases.build]
+cmds = ["npx prisma generate", "npx prisma db push --accept-data-loss"]
+
+[start]
+cmd = "node src/index.js"
