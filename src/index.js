@@ -50,10 +50,7 @@ app.use((err, req, res, next) => {
   res.status(500).json({ error: "Internal server error" });
 });
 
-app.listen(PORT, () => {
-  console.log(`Server running on http://localhost:${PORT}`);
-}).on('error', (err) => {
-  console.error('Server failed to start:', err);
-  process.exit(1);
+app.listen(PORT, '0.0.0.0', () => {
+  console.log(`Server running on port ${PORT}`);
 });
 module.exports = app;
