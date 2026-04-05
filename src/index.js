@@ -11,6 +11,11 @@ const dashboardRoutes = require("./routes/dashboard.routes");
 const app = express();
 const PORT = process.env.PORT || 3000;
 
+process.on('uncaughtException', (err) => {
+  console.error('Uncaught Exception:', err);
+  process.exit(1);
+});
+
 // Middleware
 app.use(cors());
 app.use(express.json());
@@ -47,6 +52,8 @@ app.use((err, req, res, next) => {
 
 app.listen(PORT, () => {
   console.log(`Server running on http://localhost:${PORT}`);
+}).on('error', (err) => {
+  console.error('Server failed to start:', err);
+  process.exit(1);
 });
-
 module.exports = app;
